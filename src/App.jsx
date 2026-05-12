@@ -12,8 +12,8 @@ function App() {
 
   // SECCIÓN USE-EFFECT
   useEffect(() => {
-    //fetch("https://randomuser.me/api/?gender=female&results=10")
-    fetch("http://localhost:4000/api?country=" + country)
+    fetch("https://randomuser.me/api/?gender=female&results=10")
+      //fetch("http://localhost:4000/api?country=" + country)
       .then((res) => res.json())
       .then((data) => {
         setContacts(
