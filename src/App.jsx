@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router";
 import "./App.scss";
+import LandingPage from "./components/pages/LandingPage";
+import DetailPage from "./components/pages/DetailPage";
 
 function App() {
   // SECCIÓN ESTADO
@@ -53,6 +56,16 @@ function App() {
     contactObj.fullname.toLocaleLowerCase().includes(name.toLocaleLowerCase()),
   );
 
+  const findContact = (searchUUID) => {
+    return contacts.find((contactObj) => contactObj.uuid === searchUUID);
+  };
+
+  /*
+    /detalle/5d7517f4-6751-427c-9b54-7199d600bbe5
+    /detalle/47464e51-8fc9-45f5-b874-046ea3a96cca
+    /detalle/e7c76d2b-4744-4787-bd50-d0d4d67169df
+  */
+
   return (
     <div>
       <header className="header">
@@ -64,61 +77,25 @@ function App() {
         />
       </header>
       <main className="main">
-        <form className="filters">
-          <h2 className="filters__title title--medium">Filtrar por...</h2>
-          <label className="form__label display-block" htmlFor="search_name">
-            Nombre:
-            <input
-              className="form__input-text"
-              type="text"
-              name="search_name"
-              id="search_name"
-              onInput={handleInputName}
-              value={name}
-            />
-          </label>
-          <label className="form__label" htmlFor="search_country">
-            Pais:
-            <select
-              className="form__input-text"
-              name="search_country"
-              id="search_country"
-              onInput={handleInputCountry}
-              value={country}
-            >
-              <option value="">Todos</option>
-              {countriesWithoutDupl.map((eachCountry) => (
-                <option key={eachCountry} value={eachCountry}>
-                  {eachCountry}
-                </option>
-              ))}
-            </select>
-          </label>
-        </form>
-        <section className="contacts">
-          <h2 className="contacts__title title--medium">Lista de contactos</h2>
-          <ul className="cards">
-            {filteredContacts.map((contactObj) => (
-              <li key={contactObj.uuid} className="card">
-                <img
-                  className="card__img"
-                  src={contactObj.image}
-                  alt={"Foto de " + contactObj.fullname}
-                  title={
-                    "Foto de " +
-                    contactObj.fullname +
-                    " que vive en " +
-                    contactObj.city
-                  }
-                />
-                <h3 className="card__title">{contactObj.fullname}</h3>
-                <p className="card__description">
-                  {contactObj.city} / {contactObj.gender} / {contactObj.age}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <Routes>
+          <Route
+            index
+            element={
+              <LandingPage
+                name={name}
+                country={country}
+                countriesWithoutDupl={countriesWithoutDupl}
+                handleInputName={handleInputName}
+                handleInputCountry={handleInputCountry}
+                contacts={filteredContacts}
+              />
+            }
+          ></Route>
+          <Route
+            path="/detalle/:uuid"
+            element={<DetailPage findContact={findContact} />}
+          ></Route>
+        </Routes>
       </main>
     </div>
   );
