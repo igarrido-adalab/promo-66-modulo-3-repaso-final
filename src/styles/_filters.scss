@@ -1,0 +1,73 @@
+.filters {
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @media (width > 768px) {
+    border-right: solid 1px #000;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.form__label {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 0.25rem 0;
+  padding: 0.3rem 0.3rem 0.3rem 0;
+  font-size: 1rem;
+}
+
+.form__input-text {
+  width: 100%;
+  margin: 0.25rem;
+  padding: 0.3rem;
+  background-color: #ddd;
+  border: none;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  outline: none;
+  vertical-align: middle;
+}
+
+.form__input-text:focus {
+  background-color: #ccc;
+}
+
+select.form__input-text {
+  width: calc(100% + 0.6rem);
+}
+
+.form__label--checkbox {
+  display: block;
+  margin: 0 1rem 0.25rem 1rem;
+  padding: 0.3rem 0.3rem 0.3rem 0;
+  font-size: 1rem;
+}
+
+.form__btn {
+  margin: 0.25rem;
+  padding: 0.35rem 0.8rem;
+  text-align: center;
+  background-color: #14d9c4;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  vertical-align: middle;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+}
+
+.form__btn * {
+  color: white;
+}
+
+.form__btn:hover {
+  background-color: #099d8d;
+  border-color: #14d9c4;
+}
